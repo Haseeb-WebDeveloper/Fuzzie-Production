@@ -1,6 +1,5 @@
 'use client'
-
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -92,8 +91,10 @@ const ProfileForm = ({ user, onUpdate }: Props) => {
         >
           {isLoading ? (
             <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Saving
+              <div className="flex items-center gap-2">
+                Saving
+                <Loader2 className=" h-4 w-4 animate-spin" />
+              </div>
             </>
           ) : (
             'Save User Settings'

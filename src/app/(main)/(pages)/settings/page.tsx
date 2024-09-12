@@ -1,20 +1,24 @@
+'use client'
+
 import ProfileForm from "@/components/forms/profile-form"
+import ProfilePicture from "./_components/profilePicture"
+import { useRouter } from "next/navigation"
 
-type Props = {}
+type Props = {
+  userImage: string | null
+  onDelete: any
+  onUpload: any
+}
 
-const Setting = (props: Props) => {
-  // const onRemoveProfileImage = async () => {
-  //   'use server'
-  //   const respose = await db.user.update({
-  //     where: {
-  //       clerkId: authUser.id
-  //     },
-  //     data: {
-  //       profileImage: ""
-  //     }
-  //   })
-  // }
-
+const Setting = ({userImage, onDelete, onUpload}: Props) => {
+  const router = useRouter()
+  const onRemoveProfileImage = async () => {
+    // 'use server'
+    const response = await onDelete()
+    if (response) {
+      router.refresh()
+    }
+  }
 
   return (
     <>
@@ -28,11 +32,11 @@ const Setting = (props: Props) => {
           <p className='text-base text-white/50'>Add and update your information.</p>
         </div>
         {/* profile picture */}
-        {/* <ProfilePicture
-        onDelete={deleteProfileImage}
-        userImage={user?.profileImage || ''}
-        onUpload={uploadProfileImage}
-        /> */}
+        <ProfilePicture
+        onDelete={onRemoveProfileImage}
+        userImage={userImage || ''}
+        onUpload={onUpload}
+        />
         <ProfileForm  user={1}/>
       </div>
     </div>
