@@ -21,6 +21,7 @@ const ProfilePicture = ({ userImage, onDelete, onUpload }: Props) => {
       router.refresh()
     }
   }
+  
 
   return (
     <div className="flex flex-col">
