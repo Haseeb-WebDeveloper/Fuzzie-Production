@@ -1,9 +1,8 @@
-'use client'
 
 import ProfileForm from "@/components/forms/profile-form"
 import ProfilePicture from "./_components/profilePicture"
-import { useRouter } from "next/navigation"
-
+import { db } from "@/lib/db"
+// import { useAuthUser } from "@clerk/nextjs"
 type Props = {
   userImage: string | null
   onDelete: any
@@ -11,14 +10,20 @@ type Props = {
 }
 
 const Setting = ({userImage, onDelete, onUpload}: Props) => {
-  const router = useRouter()
+  // const authUser = useAuthUser()
   const onRemoveProfileImage = async () => {
-    // 'use server'
-    const response = await onDelete()
-    if (response) {
-      router.refresh()
-    }
+    'use server'
+    const response = await db.user.update({
+      where: {
+        // clerkId: authUser.id
+      },
+      data: {
+       profileImage: null
+      }
+    })
+    return response
   }
+
 
   return (
     <>
