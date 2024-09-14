@@ -9,6 +9,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
+import { UserButton } from '@clerk/nextjs'
 // import { useBilling } from '@/providers/billing-provider'
 
 type Props = {
@@ -47,7 +48,7 @@ const InfoBar = ({}: Props) => {
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
-      {/* <UserButton /> */}
+      <UserButton />
     </div>
   )
 }

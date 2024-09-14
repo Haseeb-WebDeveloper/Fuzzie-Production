@@ -3,9 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MenuIcon } from 'lucide-react'
 import { UserButton } from '@clerk/nextjs'
+import { currentUser } from '@clerk/nextjs'
 type Props = {}
-
 const Navbar = async (props: Props) => {
+  const user = await currentUser()
+  console.log(user)
   return (  
     <>
       <header className='fixed right-0 left-0 top-0 py-3 px-4 md:px-8 lg:px-20 font-twk bg-[#161616] backdrop-blur-lg border-b-[1px] border-neutral-900 z-[100] flex items-center justify-between '>
@@ -45,12 +47,11 @@ const Navbar = async (props: Props) => {
         <aside className='flex items-center gap-4'>
           <Link href={"/dashboard"} className=''>
               <button className="px-4 py-2 rounded-md bg-[#1C1C1C] border-[0.1px] shadow">
-                 {false  ? 'Dashboard' : 'Get Started'}
+                 {user ? 'Dashboard' : 'Get Started'}
               </button>
           </Link>
 
-          {/* wire up useres */}
-          {/* <UserButton /> */}
+          {user && <UserButton />}
           <MenuIcon className='md:hidden'/>
         </aside>
       </header>
