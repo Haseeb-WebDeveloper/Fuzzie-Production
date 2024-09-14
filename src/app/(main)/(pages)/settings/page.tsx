@@ -1,53 +1,82 @@
-import ProfileForm from "@/components/forms/profile-form"
-import ProfilePicture from "./_components/profilePicture"
-import { db } from "@/lib/db"
-import { auth } from "@clerk/nextjs";
-type Props = {
-  userImage: string | null
-  onDelete: any
-  onUpload: any
-}
+import ProfileForm from '@/components/forms/profile-form'
+import React from 'react'
+import ProfilePicture from './_components/profilePicture'
+import { db } from '@/lib/db'
+import { currentUser } from '@clerk/nextjs'
 
-const Setting = ({userImage, onDelete, onUpload}: Props) => {
-  const onRemoveProfileImage = async () => {
+type Props = {}
+
+const Settings = async (props: Props) => {
+  const authUser = await currentUser()
+  if (!authUser) return null
+
+  const user = await db.user.findUnique({ where: { clerkId: authUser.id } })
+  const removeProfileImage = async () => {
     'use server'
-    const { userId } = auth();
-    if (!userId) {
-      throw new Error("User not authenticated");
-    }
     const response = await db.user.update({
       where: {
-        clerkId: userId
+        clerkId: authUser.id,
       },
       data: {
-       profileImage: null
-      }
+        profileImage: '',
+      },
     })
     return response
   }
 
+  const uploadProfileImage = async (image: string) => {
+    'use server'
+    const id = authUser.id
+    const response = await db.user.update({
+      where: {
+        clerkId: id,
+      },
+      data: {
+        profileImage: image,
+      },
+    })
+
+    return response
+  }
+
+  const updateUserInfo = async (name: string) => {
+    'use server'
+
+    const updateUser = await db.user.update({
+      where: {
+        clerkId: authUser.id,
+      },
+      data: {
+        name,
+      },
+    })
+    return updateUser
+  }
+
   return (
-    <>
-    <div className='flex flex-col gap-4'>
-      <h1 className='text-2xl sticky top-0 p-4 bg-background/50 backdrop-blur-lg flex items-center justify-between border-b z-10'>
+    <div className="flex flex-col gap-4">
+      <h1 className="sticky top-0 z-[10] flex items-center justify-between border-b bg-background/50 p-6 text-4xl backdrop-blur-lg">
         <span>Settings</span>
       </h1>
-      <div className='flex flex-col gap-10 p-6'>
-        <div className='font-twk'>
-          <h2 className='text-2xl font-bold'>User Profile</h2>
-          <p className='text-base text-white/50'>Add and update your information.</p>
+      <div className="flex flex-col gap-10 p-6">
+        <div>
+          <h2 className="text-2xl font-bold">User Profile</h2>
+          <p className="text-base text-white/50">
+            Add or update your information
+          </p>
         </div>
-        {/* profile picture */}
         <ProfilePicture
-        onDelete={onRemoveProfileImage}
-        userImage={userImage || ''}
-        onUpload={onUpload}
+          onDelete={removeProfileImage}
+          userImage={user?.profileImage || ''}
+          onUpload={uploadProfileImage}
         />
-        <ProfileForm  user={1}/>
+        <ProfileForm
+          user={user}
+          onUpdate={updateUserInfo}
+        />
       </div>
     </div>
-    </>
   )
 }
 
-export default Setting
+export default Settings

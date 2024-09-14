@@ -36,6 +36,7 @@ const ProfilePicture = ({ userImage, onDelete, onUpload }: Props) => {
                 src={userImage}
                 alt="User_Image"
                 fill
+                className='object-contain'
               />
             </div>
             <Button
