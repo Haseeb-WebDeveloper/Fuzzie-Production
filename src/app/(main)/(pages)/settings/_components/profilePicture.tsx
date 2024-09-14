@@ -27,6 +27,8 @@ const ProfilePicture = ({ userImage, onDelete, onUpload }: Props) => {
     <div className="flex flex-col">
       <p className="text-lg text-white"> Profile Picture</p>
       <div className="flex h-[30vh] flex-col items-center justify-center">
+
+        {/*  If user has a profile picture show it with a remove option and if user dont have a profile picture show the upload button*/}
         {userImage ? (
           <>
             <div className="relative h-full w-2/12">

@@ -1,8 +1,7 @@
-
 import ProfileForm from "@/components/forms/profile-form"
 import ProfilePicture from "./_components/profilePicture"
 import { db } from "@/lib/db"
-// import { useAuthUser } from "@clerk/nextjs"
+import { auth } from "@clerk/nextjs";
 type Props = {
   userImage: string | null
   onDelete: any
@@ -10,12 +9,15 @@ type Props = {
 }
 
 const Setting = ({userImage, onDelete, onUpload}: Props) => {
-  // const authUser = useAuthUser()
   const onRemoveProfileImage = async () => {
     'use server'
+    const { userId } = auth();
+    if (!userId) {
+      throw new Error("User not authenticated");
+    }
     const response = await db.user.update({
       where: {
-        // clerkId: authUser.id
+        clerkId: userId
       },
       data: {
        profileImage: null
@@ -23,7 +25,6 @@ const Setting = ({userImage, onDelete, onUpload}: Props) => {
     })
     return response
   }
-
 
   return (
     <>
