@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import UploadCareButton  from './uploadCareButton'
+import UploadCareButton from './uploadCareButton'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
@@ -21,14 +21,11 @@ const ProfilePicture = ({ userImage, onDelete, onUpload }: Props) => {
       router.refresh()
     }
   }
-  
 
   return (
     <div className="flex flex-col">
       <p className="text-lg text-white"> Profile Picture</p>
       <div className="flex h-[30vh] flex-col items-center justify-center">
-
-        {/*  If user has a profile picture show it with a remove option and if user dont have a profile picture show the upload button*/}
         {userImage ? (
           <>
             <div className="relative h-full w-2/12">
@@ -51,7 +48,7 @@ const ProfilePicture = ({ userImage, onDelete, onUpload }: Props) => {
         )}
       </div>
     </div>
-  ) 
+  )
 }
 
 export default ProfilePicture

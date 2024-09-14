@@ -1,13 +1,12 @@
 'use client'
 import React, { useEffect } from 'react'
-// import { FileUploaderRegular } from '@uploadcare/react-uploader';
 import '@uploadcare/react-uploader/core.css';
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import * as LR from '@uploadcare/blocks';
 
 type Props = {
-  onUpload: any
+  onUpload: (e:string) => any
 }
 
 LR.registerBlocks(LR)
@@ -39,12 +38,12 @@ const UploadCareButton = ({onUpload}: Props) => {
     <div>
       <lr-config
         ctx-name="my-uploader"
-        pubkey="a9428ff5ff90ae7a64eb"
+        pubkey="173da5d653714ea6419a"
       />
 
      <lr-file-uploader-regular
        ctx-name="my-uploader"
-       css-src={`https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.35.2/web/lr-file-uploader-regular.min.css`}
+       css-src={`https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.50.4/web/lr-file-uploader-regular.min.css`}
        />
 
      <lr-upload-ctx-provider
@@ -56,4 +55,3 @@ const UploadCareButton = ({onUpload}: Props) => {
 }
 
 export default UploadCareButton
-
