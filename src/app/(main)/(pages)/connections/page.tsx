@@ -31,6 +31,7 @@ function Connections({}: Props) {
         </div>
     </div>
   )
+  
 }
 
 export default Connections

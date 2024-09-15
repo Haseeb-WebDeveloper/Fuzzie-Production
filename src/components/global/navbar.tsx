@@ -7,7 +7,7 @@ import { currentUser } from '@clerk/nextjs'
 type Props = {}
 const Navbar = async (props: Props) => {
   const user = await currentUser()
-  console.log(user)
+  // console.log(user)
   return (  
     <>
       <header className='fixed right-0 left-0 top-0 py-3 px-4 md:px-8 lg:px-20 font-twk bg-[#161616] backdrop-blur-lg border-b-[1px] border-neutral-900 z-[100] flex items-center justify-between '>
