@@ -4,6 +4,9 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ModalProvider from "@/providers/modal-provider";
+import { Toaster } from "sonner";
+
+
 
 const font = DM_Sans({
   subsets: ["latin"],
@@ -41,6 +44,7 @@ export default function RootLayout({
           >
             <ModalProvider>
               {children}
+              <Toaster />
             </ModalProvider>
           </ThemeProvider>
         </body>
