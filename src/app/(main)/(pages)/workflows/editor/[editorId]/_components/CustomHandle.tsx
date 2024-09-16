@@ -1,6 +1,6 @@
 import { useEditor } from '@/providers/editor-provider'
 import React, { CSSProperties } from 'react'
-import { Handle, HandleProps, useStore } from '@xyflow/react'
+import { Handle, HandleProps, useStore } from 'reactflow'
 
 // Extend HandleProps to include an optional style property
 type Props = HandleProps & { style?: CSSProperties }
@@ -14,7 +14,6 @@ const selector = (s: any) => ({
 const CustomHandle = (props: Props) => {
   // Get the current state from the editor context
   const { state } = useEditor()
-  // Commented out useStore hook, might be used in future implementations
   // const { nodeInternals, edges } = useStore(selector)
 
   return (
