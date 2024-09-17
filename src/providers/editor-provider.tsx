@@ -37,7 +37,7 @@ export type Editor = {
     target: string
   }[]
   selectedNode: EditorNodeType
-}
+};
 
 export type HistoryState = {
   history: Editor[]
