@@ -1,3 +1,21 @@
+/**
+ * CustomModal Component
+ * 
+ * This component creates a reusable modal using the Drawer component from '@/components/ui/drawer'.
+ * It's designed to be flexible and can be used across the application for various purposes.
+ * 
+ * Key features:
+ * - Uses the useModal hook for managing the modal's open/close state
+ * - Accepts title, subheading, and children as props for customizable content
+ * - Implements a scrollable content area
+ * - Includes a close button in the footer
+ * 
+ * Usage:
+ * <CustomModal title="Modal Title" subheading="Modal Subheading">
+ *   {/* Modal content goes here *\/}
+ * </CustomModal>
+ */
+
 import {
   Drawer,
   DrawerClose,

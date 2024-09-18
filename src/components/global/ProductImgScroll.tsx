@@ -9,6 +9,7 @@ export function ProductImgScroll() {
       <ContainerScroll
         titleComponent={
           <>
+          {/* for future use */}
             {/* <h1 className="text-4xl font-twk  font-normal text-black dark:text-white">
               Discover the magic of <br />
               <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">

@@ -3,6 +3,7 @@ import { Option } from '@/components/ui/MultipleSelector'
 import { db } from '@/lib/db'
 import { auth, currentUser } from '@clerk/nextjs'
 
+// Fetch Google listener information for the authenticated user
 export const getGoogleListener = async () => {
   const { userId } = auth()
 
@@ -20,6 +21,7 @@ export const getGoogleListener = async () => {
   }
 }
 
+// Update the publish state of a workflow
 export const onFlowPublish = async (workflowId: string, state: boolean) => {
   console.log(state)
   const published = await db.workflows.update({
@@ -35,6 +37,7 @@ export const onFlowPublish = async (workflowId: string, state: boolean) => {
   return 'Workflow unpublished'
 }
 
+// Create or update a node template for different platforms (Discord, Slack, Notion)
 export const onCreateNodeTemplate = async (
   content: string,
   type: string,
@@ -44,6 +47,7 @@ export const onCreateNodeTemplate = async (
   notionDbId?: string
 ) => {
   if (type === 'Discord') {
+    // Update Discord template
     const response = await db.workflows.update({
       where: {
         id: workflowId,
@@ -58,6 +62,7 @@ export const onCreateNodeTemplate = async (
     }
   }
   if (type === 'Slack') {
+    // Update Slack template and access token
     const response = await db.workflows.update({
       where: {
         id: workflowId,
@@ -69,6 +74,7 @@ export const onCreateNodeTemplate = async (
     })
 
     if (response) {
+      // Fetch existing Slack channels
       const channelList = await db.workflows.findUnique({
         where: {
           id: workflowId,
@@ -79,11 +85,12 @@ export const onCreateNodeTemplate = async (
       })
 
       if (channelList) {
-        //remove duplicates before insert
+        // Remove duplicates before inserting new channels
         const NonDuplicated = channelList.slackChannels.filter(
           (channel) => channel !== channels![0].value
         )
 
+        // Update workflow with non-duplicated channels
         NonDuplicated!
           .map((channel) => channel)
           .forEach(async (channel) => {
@@ -101,6 +108,7 @@ export const onCreateNodeTemplate = async (
 
         return 'Slack template saved'
       }
+      // Add new channels to the workflow
       channels!
         .map((channel) => channel.value)
         .forEach(async (channel) => {
@@ -120,6 +128,7 @@ export const onCreateNodeTemplate = async (
   }
 
   if (type === 'Notion') {
+    // Update Notion template, access token, and database ID
     const response = await db.workflows.update({
       where: {
         id: workflowId,
@@ -135,6 +144,7 @@ export const onCreateNodeTemplate = async (
   }
 }
 
+// Fetch all workflows for the current user
 export const onGetWorkflows = async () => {
   const user = await currentUser()
   if (user) {
@@ -148,11 +158,12 @@ export const onGetWorkflows = async () => {
   }
 }
 
+// Create a new workflow for the current user
 export const onCreateWorkflow = async (name: string, description: string) => {
   const user = await currentUser()
 
   if (user) {
-    //create new workflow
+    // Create new workflow
     const workflow = await db.workflows.create({
       data: {
         userId: user.id,
@@ -166,6 +177,7 @@ export const onCreateWorkflow = async (name: string, description: string) => {
   }
 }
 
+// Fetch nodes and edges for a specific workflow
 export const onGetNodesEdges = async (flowId: string) => {
   const nodesEdges = await db.workflows.findUnique({
     where: {

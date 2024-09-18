@@ -1,7 +1,9 @@
 'use client'
 import { createContext, useContext, useState } from 'react'
 
+// Define the shape of the ConnectionProviderProps
 export type ConnectionProviderProps = {
+  // Discord node properties
   discordNode: {
     webhookURL: string
     content: string
@@ -9,20 +11,21 @@ export type ConnectionProviderProps = {
     guildName: string
   }
   setDiscordNode: React.Dispatch<React.SetStateAction<any>>
+  
+  // Google node properties
   googleNode: {}[]
   setGoogleNode: React.Dispatch<React.SetStateAction<any>>
+  
+  // Notion node properties
   notionNode: {
     accessToken: string
     databaseId: string
     workspaceName: string
     content: ''
   }
-  workflowTemplate: {
-    discord?: string
-    notion?: string
-    slack?: string
-  }
   setNotionNode: React.Dispatch<React.SetStateAction<any>>
+  
+  // Slack node properties
   slackNode: {
     appId: string
     authedUserId: string
@@ -34,6 +37,13 @@ export type ConnectionProviderProps = {
     content: string
   }
   setSlackNode: React.Dispatch<React.SetStateAction<any>>
+  
+  // Workflow template properties
+  workflowTemplate: {
+    discord?: string
+    notion?: string
+    slack?: string
+  }
   setWorkFlowTemplate: React.Dispatch<
     React.SetStateAction<{
       discord?: string
@@ -41,14 +51,18 @@ export type ConnectionProviderProps = {
       slack?: string
     }>
   >
+  
+  // Loading state
   isLoading: boolean
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+// Props type for the ConnectionsProvider component
 type ConnectionWithChildProps = {
   children: React.ReactNode
 }
 
+// Initial values for the ConnectionProviderProps
 const InitialValues: ConnectionProviderProps = {
   discordNode: {
     webhookURL: '',
@@ -87,10 +101,13 @@ const InitialValues: ConnectionProviderProps = {
   setWorkFlowTemplate: () => undefined,
 }
 
+// Create a context for the connections
 const ConnectionsContext = createContext(InitialValues)
 const { Provider } = ConnectionsContext
 
+// ConnectionsProvider component to wrap the application and provide connection functionality
 export const ConnectionsProvider = ({ children }: ConnectionWithChildProps) => {
+  // State hooks for each node type and other properties
   const [discordNode, setDiscordNode] = useState(InitialValues.discordNode)
   const [googleNode, setGoogleNode] = useState(InitialValues.googleNode)
   const [notionNode, setNotionNode] = useState(InitialValues.notionNode)
@@ -100,6 +117,7 @@ export const ConnectionsProvider = ({ children }: ConnectionWithChildProps) => {
     InitialValues.workflowTemplate
   )
 
+  // Combine all values into a single object
   const values = {
     discordNode,
     setDiscordNode,
@@ -115,9 +133,11 @@ export const ConnectionsProvider = ({ children }: ConnectionWithChildProps) => {
     setWorkFlowTemplate,
   }
 
+  // Provide the values to all children components
   return <Provider value={values}>{children}</Provider>
 }
 
+// Custom hook to use the connections context
 export const useNodeConnections = () => {
   const nodeConnection = useContext(ConnectionsContext)
   return { nodeConnection }

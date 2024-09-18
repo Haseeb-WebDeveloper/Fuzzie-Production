@@ -1,18 +1,24 @@
+// Commit: Define types and schemas for user profiles, workflows, connections, and editor canvas
+
 import { ConnectionProviderProps } from '@/providers/connections-provider'
 import { z } from 'zod'
 
+// Schema for editing user profile
 export const EditUserProfileSchema = z.object({
   email: z.string().email('Required'),
   name: z.string().min(1, 'Required'),
 })
 
+// Schema for creating/editing workflows
 export const WorkflowFormSchema = z.object({
   name: z.string().min(1, 'Required'),
   description: z.string().min(1, 'Required'),
 })
 
+// Define available connection types
 export type ConnectionTypes = 'Google Drive' | 'Notion' | 'Slack' | 'Discord'
 
+// Define structure for connection objects
 export type Connection = {
   title: ConnectionTypes
   description: string
@@ -23,6 +29,7 @@ export type Connection = {
   slackSpecial?: boolean
 }
 
+// Define available editor canvas types
 export type EditorCanvasTypes =
   | 'Email'
   | 'Condition'
@@ -36,6 +43,7 @@ export type EditorCanvasTypes =
   | 'Action'
   | 'Wait'
 
+// Define structure for editor canvas card
 export type EditorCanvasCardType = {
   title: string
   description: string
@@ -45,6 +53,7 @@ export type EditorCanvasCardType = {
   type: EditorCanvasTypes
 }
 
+// Define structure for editor node
 export type EditorNodeType = {
   id: string
   type: EditorCanvasCardType['type']
@@ -57,6 +66,7 @@ export type EditorNodeType = {
 
 export type EditorNode = EditorNodeType
 
+// Define possible editor actions
 export type EditorActions =
   | {
       type: 'LOAD_DATA'
@@ -84,6 +94,7 @@ export type EditorActions =
       }
     }
 
+// Map node types to their corresponding connection keys
 export const nodeMapper: Record<string, string> = {
   Notion: 'notionNode',
   Slack: 'slackNode',

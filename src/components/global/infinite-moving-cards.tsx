@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
+// Commit: Add InfiniteMovingCards component with customizable options
 export const InfiniteMovingCards = ({
   items,
   direction = 'left',
@@ -22,11 +23,14 @@ export const InfiniteMovingCards = ({
   const containerRef = React.useRef<HTMLDivElement>(null)
   const scrollerRef = React.useRef<HTMLUListElement>(null)
 
+  // Commit: Initialize animation on component mount
   useEffect(() => {
     addAnimation()
   }, [])
   
   const [start, setStart] = useState(false)
+
+  // Commit: Implement addAnimation function to clone and append items
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children)
@@ -43,6 +47,8 @@ export const InfiniteMovingCards = ({
       setStart(true)
     }
   }
+
+  // Commit: Add getDirection function to set animation direction
   const getDirection = () => {
     if (containerRef.current) {
       if (direction === 'left') {
@@ -58,6 +64,8 @@ export const InfiniteMovingCards = ({
       }
     }
   }
+
+  // Commit: Add getSpeed function to set animation duration
   const getSpeed = () => {
     if (containerRef.current) {
       if (speed === 'fast') {
@@ -69,7 +77,8 @@ export const InfiniteMovingCards = ({
       }
     }
   }
-  // console.log(items)
+
+  // Commit: Render InfiniteMovingCards component with dynamic styling
   return (
     <div
       ref={containerRef}

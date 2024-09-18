@@ -1,4 +1,5 @@
 'use client'
+// Import necessary dependencies and components
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -16,13 +17,18 @@ import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { Loader2 } from 'lucide-react'
 
+// Define the props for the ProfileForm component
 type Props = {
   user: any
   onUpdate?: any
 }
 
+// ProfileForm component definition
 const ProfileForm = ({ user, onUpdate }: Props) => {
+  // State to manage loading status
   const [isLoading, setIsLoading] = useState(false)
+
+  // Initialize the form using react-hook-form with zod schema validation
   const form = useForm<z.infer<typeof EditUserProfileSchema>>({
     mode: 'onChange',
     resolver: zodResolver(EditUserProfileSchema),
@@ -32,6 +38,7 @@ const ProfileForm = ({ user, onUpdate }: Props) => {
     },
   })
 
+  // Handle form submission
   const handleSubmit = async (
     values: z.infer<typeof EditUserProfileSchema>
   ) => {
@@ -40,6 +47,7 @@ const ProfileForm = ({ user, onUpdate }: Props) => {
     setIsLoading(false)
   }
 
+  // Reset form values when user prop changes
   useEffect(() => {
     form.reset({ name: user.name, email: user.email })
   }, [user])
@@ -50,6 +58,7 @@ const ProfileForm = ({ user, onUpdate }: Props) => {
         className="flex flex-col gap-6 max-w-md"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
+        {/* Name input field */}
         <FormField
           disabled={isLoading}
           control={form.control}
@@ -67,6 +76,7 @@ const ProfileForm = ({ user, onUpdate }: Props) => {
             </FormItem>
           )}
         />
+        {/* Email input field (disabled) */}
         <FormField
           control={form.control}
           name="email"
@@ -85,6 +95,7 @@ const ProfileForm = ({ user, onUpdate }: Props) => {
             </FormItem>
           )}
         />
+        {/* Submit button with loading state */}
         <Button
           type="submit"
           className="self-start bg-[#210840] hover:bg-[#2F006B] text-white "

@@ -1,4 +1,5 @@
 'use client'
+// Import necessary dependencies and components
 import { EditorCanvasCardType, EditorNodeType } from '@/lib/types'
 import { useEditor } from '@/providers/editor-provider'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
@@ -32,12 +33,14 @@ import { onGetNodesEdges } from '../../../_actions/workflow-connections'
 
 type Props = {}
 
+// Initialize empty arrays for nodes and edges
 const initialNodes: EditorNodeType[] = []
-
 const initialEdges: { id: string; source: string; target: string }[] = []
 
 const EditorCanvas = (props: Props) => {
+  // Use the editor context
   const { dispatch, state } = useEditor()
+  // State for nodes, edges, loading state, and ReactFlow instance
   const [nodes, setNodes] = useState(initialNodes)
   const [edges, setEdges] = useState(initialEdges)
   const [isWorkFlowLoading, setIsWorkFlowLoading] = useState<boolean>(false)
@@ -45,11 +48,13 @@ const EditorCanvas = (props: Props) => {
     useState<ReactFlowInstance>()
   const pathname = usePathname()
 
+  // Handle drag over event
   const onDragOver = useCallback((event: any) => {
     event.preventDefault()
     event.dataTransfer.dropEffect = 'move'
   }, [])
 
+  // Handle node changes
   const onNodesChange = useCallback(
     (changes: NodeChange[]) => {
       //@ts-ignore
@@ -58,6 +63,7 @@ const EditorCanvas = (props: Props) => {
     [setNodes]
   )
 
+  // Handle edge changes
   const onEdgesChange = useCallback(
     (changes: EdgeChange[]) =>
       //@ts-ignore
@@ -65,11 +71,13 @@ const EditorCanvas = (props: Props) => {
     [setEdges]
   )
 
+  // Handle new connections
   const onConnect = useCallback(
     (params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
     []
   )
 
+  // Handle drop event for new nodes
   const onDrop = useCallback(
     (event: any) => {
       event.preventDefault()
@@ -78,11 +86,12 @@ const EditorCanvas = (props: Props) => {
         'application/reactflow'
       )
 
-      // check if the dropped element is valid
+      // Check if the dropped element is valid
       if (typeof type === 'undefined' || !type) {
         return
       }
 
+      // Check if a trigger already exists
       const triggerAlreadyExists = state.editor.elements.find(
         (node) => node.type === 'Trigger'
       )
@@ -92,15 +101,14 @@ const EditorCanvas = (props: Props) => {
         return
       }
 
-      // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
-      // and you don't need to subtract the reactFlowBounds.left/top anymore
-      // details: https://reactflow.dev/whats-new/2023-11-10
+      // Get the position for the new node
       if (!reactFlowInstance) return
       const position = reactFlowInstance.screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
       })
 
+      // Create a new node
       const newNode = {
         id: v4(),
         type,
@@ -120,6 +128,7 @@ const EditorCanvas = (props: Props) => {
     [reactFlowInstance, state]
   )
 
+  // Handle click on the canvas
   const handleClickCanvas = () => {
     dispatch({
       type: 'SELECTED_ELEMENT',
@@ -141,10 +150,12 @@ const EditorCanvas = (props: Props) => {
     })
   }
 
+  // Update editor state when nodes or edges change
   useEffect(() => {
     dispatch({ type: 'LOAD_DATA', payload: { edges, elements: nodes } })
   }, [nodes, edges])
 
+  // Define node types
   const nodeTypes = useMemo(
     () => ({
       Action: EditorCanvasCardSingle,
@@ -163,6 +174,7 @@ const EditorCanvas = (props: Props) => {
     []
   )
 
+  // Fetch workflow data
   const onGetWorkFlow = async () => {
     setIsWorkFlowLoading(true)
     const response = await onGetNodesEdges(pathname.split('/').pop()!)
@@ -174,6 +186,7 @@ const EditorCanvas = (props: Props) => {
     setIsWorkFlowLoading(false)
   }
 
+  // Fetch workflow data on component mount
   useEffect(() => {
     onGetWorkFlow()
   }, [])
@@ -187,6 +200,7 @@ const EditorCanvas = (props: Props) => {
             className="relative"
           >
             {isWorkFlowLoading ? (
+              // Show loading spinner when workflow is loading
               <div className="absolute flex h-full w-full items-center justify-center">
                 <svg
                   aria-hidden="true"
@@ -206,6 +220,7 @@ const EditorCanvas = (props: Props) => {
                 </svg>
               </div>
             ) : (
+              // Render ReactFlow when workflow is loaded
               <ReactFlow
                 className="w-[300px]"
                 onDrop={onDrop}
@@ -244,6 +259,7 @@ const EditorCanvas = (props: Props) => {
         className="relative sm:block"
       >
         {isWorkFlowLoading ? (
+          // Show loading spinner in sidebar when workflow is loading
           <div className="absolute flex h-full w-full items-center justify-center">
             <svg
               aria-hidden="true"
@@ -263,6 +279,7 @@ const EditorCanvas = (props: Props) => {
             </svg>
           </div>
         ) : (
+          // Render FlowInstance and EditorCanvasSidebar when workflow is loaded
           <FlowInstance
             edges={edges}
             nodes={nodes}

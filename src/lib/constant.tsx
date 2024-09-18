@@ -6,8 +6,9 @@ import Payment from '@/components/icons/payment'
 import Settings from '@/components/icons/settings'
 import Workflows from '@/components/icons/workflows'
 import { Connection } from './types'
-// import { Connection } from './type'
-export const clients = [...new Array(10)].map((client, index) => ({
+
+// Create an array of 10 client objects with sequential image URLs
+export const clients = [...new Array(10)].map((_, index) => ({
   href: `/${index + 1}.png`,
 }))
 
@@ -92,7 +93,8 @@ export const products = [
   },
 ]
 
-// menu options of sidebar 
+// Define the menu options for the sidebar navigation
+// Each option includes a name, associated icon component, and href (route)
 export const menuOptions = [
   { name: 'Dashboard', Component: Home, href: '/dashboard' },
   { name: 'Workflows', Component: Workflows, href: '/workflows' },
@@ -148,35 +150,35 @@ export const EditorCanvasDefaultCardTypes = {
   },
 }
 
+// Define available connections for the application
 export const CONNECTIONS: Connection[] = [
   {
     title: 'Google Drive',
-    description: 'Connect your google drive to listen to folder changes',
+    description: 'Connect your Google Drive to listen to folder changes',
     image: '/googleDrive.png',
     connectionKey: 'googleNode',
-    alwaysTrue: true,
+    alwaysTrue: true, // This connection is always available
   },
   {
     title: 'Discord',
-    description: 'Connect your discord to send notification and messages',
+    description: 'Connect your Discord to send notifications and messages',
     image: '/discord.png',
     connectionKey: 'discordNode',
-    accessTokenKey: 'webhookURL',
+    accessTokenKey: 'webhookURL', // Key to access Discord webhook URL
   },
   {
     title: 'Notion',
-    description: 'Create entries in your notion dashboard and automate tasks.',
+    description: 'Create entries in your Notion dashboard and automate tasks',
     image: '/notion.png',
     connectionKey: 'notionNode',
-    accessTokenKey: 'accessToken',
+    accessTokenKey: 'accessToken', // Key to access Notion API token
   },
   {
     title: 'Slack',
-    description:
-      'Use slack to send notifications to team members through your own custom bot.',
+    description: 'Send notifications to team members through a custom Slack bot',
     image: '/slack.png',
     connectionKey: 'slackNode',
-    accessTokenKey: 'slackAccessToken',
-    slackSpecial: true,
+    accessTokenKey: 'slackAccessToken', // Key to access Slack API token
+    slackSpecial: true, // Indicates special handling for Slack connection
   },
 ]

@@ -1,4 +1,4 @@
-import InfoBar from '@/components/infoBar'
+import InfoBar from '@/components/topInfoNavBar'
 import Sidebar from '@/components/sidebar'
 import React from 'react'
 

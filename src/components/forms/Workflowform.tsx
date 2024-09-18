@@ -1,3 +1,4 @@
+// Import necessary dependencies and components
 import { WorkflowFormSchema } from '@/lib/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
@@ -26,13 +27,18 @@ import { Loader2 } from 'lucide-react'
 // import { onCreateWorkflow } from '@/app/(main)/(pages)/workflows/_actions/workflow-connections'
 import { useModal } from '@/providers/modal-provider'
 
+// Define props for the Workflowform component
 type Props = {
   title?: string
   subTitle?: string
 }
 
+// Workflowform component definition
 const Workflowform = ({ subTitle, title }: Props) => {
+  // Get the setClose function from the modal provider
   const { setClose } = useModal()
+  
+  // Initialize the form using react-hook-form with zod schema validation
   const form = useForm<z.infer<typeof WorkflowFormSchema>>({
     mode: 'onChange',
     resolver: zodResolver(WorkflowFormSchema),
@@ -42,10 +48,14 @@ const Workflowform = ({ subTitle, title }: Props) => {
     },
   })
 
+  // Get the loading state from the form
   const isLoading = form.formState.isLoading
+  // Initialize the router
   const router = useRouter()
 
+  // Handle form submission
   const handleSubmit = async (values: z.infer<typeof WorkflowFormSchema>) => {
+    // Commented out code for creating a workflow and showing a toast message
     // const workflow = await onCreateWorkflow(values.name, values.description)
     // if (workflow) {
     //   toast.message(workflow.message)
@@ -55,7 +65,9 @@ const Workflowform = ({ subTitle, title }: Props) => {
   }
 
   return (
+    // Card component to wrap the form
     <Card className="w-full max-w-[650px] border-none">
+      {/* Conditional rendering of the card header */}
       {title && subTitle && (
         <CardHeader>
           <CardTitle>{title}</CardTitle>
@@ -63,11 +75,13 @@ const Workflowform = ({ subTitle, title }: Props) => {
         </CardHeader>
       )}
       <CardContent>
+        {/* Form component */}
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
             className="flex flex-col gap-4 text-left"
           >
+            {/* Name input field */}
             <FormField
               disabled={isLoading}
               control={form.control}
@@ -85,6 +99,7 @@ const Workflowform = ({ subTitle, title }: Props) => {
                 </FormItem>
               )}
             />
+            {/* Description input field */}
             <FormField
               disabled={isLoading}
               control={form.control}
@@ -102,6 +117,7 @@ const Workflowform = ({ subTitle, title }: Props) => {
                 </FormItem>
               )}
             />
+            {/* Submit button with loading state */}
             <Button
               className="mt-4"
               disabled={isLoading}

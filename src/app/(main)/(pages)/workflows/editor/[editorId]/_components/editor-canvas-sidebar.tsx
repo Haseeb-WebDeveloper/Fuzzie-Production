@@ -1,5 +1,6 @@
 'use client'
 
+// Import necessary UI components and utilities
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -18,21 +19,21 @@ import {
   } from "@/components/ui/accordion"
 import RenderConnectionAccordion from './render-connection-accordion'
 
-  
+// Define props type for the component
 type Props = {
     nodes: EditorNodeType[]
 }
 
+// EditorCanvasSidebar component
 function EditorCanvasSidebar({ nodes }: Props) {
-    //connect db
-
-
+    // Get editor state from the EditorProvider
     const { state } = useEditor()
+    // Get node connection data from the ConnectionsProvider
     const { nodeConnection } = useNodeConnections()
-
 
     return (
         <aside className='flex flex-col gap-2'>
+            {/* Tabs for Action and Settings */}
             <Tabs
                 defaultValue="action"
                 className='h-screen overflow-y-scroll pb-24'
@@ -42,10 +43,12 @@ function EditorCanvasSidebar({ nodes }: Props) {
                     <TabsTrigger value='settings'>Settings</TabsTrigger>
                 </TabsList>
                 <Separator />
+                {/* Action Tab Content */}
                 <TabsContent
                     value="action"
                     className="flex flex-col gap-4 p-4"
                 >
+                    {/* Render draggable cards for Trigger or Action types */}
                     {Object.entries(EditorCanvasDefaultCardTypes)
                         .filter(
                             ([_, cardType]) =>
@@ -71,15 +74,19 @@ function EditorCanvasSidebar({ nodes }: Props) {
                             </Card>
                         ))}
                 </TabsContent>
+                {/* Settings Tab Content */}
                 <TabsContent
                     value="settings"
                     className="-mt-6"
                 >
+                    {/* Display selected node title */}
                     <div className="px-2 py-4 text-center text-xl font-bold">
                         {state.editor.selectedNode.data.title}
                     </div>
 
+                    {/* Accordion for Account and Action settings */}
                     <Accordion type="multiple">
+                        {/* Account settings */}
                         <AccordionItem
                             value="Options"
                             className="border-y-[1px] px-2"
@@ -88,6 +95,7 @@ function EditorCanvasSidebar({ nodes }: Props) {
                                 Account
                             </AccordionTrigger>
                             <AccordionContent>
+                                {/* Render connection options for the selected node */}
                                 {CONNECTIONS.map((connection) => (
                                     <RenderConnectionAccordion
                                         key={connection.title}
@@ -97,6 +105,7 @@ function EditorCanvasSidebar({ nodes }: Props) {
                                 ))}
                             </AccordionContent>
                         </AccordionItem>
+                        {/* Action settings */}
                         <AccordionItem
                             value="Expected Output"
                             className="px-2"
@@ -104,6 +113,7 @@ function EditorCanvasSidebar({ nodes }: Props) {
                             <AccordionTrigger className="!no-underline">
                                 Action
                             </AccordionTrigger>
+                            {/* Placeholder for RenderOutputAccordion component */}
                             {/* <RenderOutputAccordion
                                 state={state}
                                 nodeConnection={nodeConnection}

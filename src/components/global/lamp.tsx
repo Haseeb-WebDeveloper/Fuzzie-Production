@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import  {SparklesCore}  from './sparkles'
 
+// Commit: Create LampComponent with animated title
 export function LampComponent() {
   return (
     <LampContainer>
@@ -24,6 +25,7 @@ export function LampComponent() {
   )
 }
 
+// Commit: Implement LampContainer with complex lighting effects
 export const LampContainer = ({
   children,
   className,
@@ -39,6 +41,7 @@ export const LampContainer = ({
       )}
     >
       <div className="relative  flex w-full flex-1 scale-y-125 items-center justify-center isolate z-0 ">
+        {/* Commit: Add left conic gradient for lamp effect */}
         <motion.div
           initial={{ opacity: 0.5, width: '15rem' }}
           whileInView={{ opacity: 1, width: '30rem' }}
@@ -55,6 +58,7 @@ export const LampContainer = ({
           <div className="absolute  w-[100%] left-0 bg-neutral-950 h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
           <div className="absolute  w-40 h-[100%] left-0 bg-neutral-950  bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
         </motion.div>
+        {/* Commit: Add right conic gradient for lamp effect */}
         <motion.div
           initial={{ opacity: 0.5, width: '15rem' }}
           whileInView={{ opacity: 1, width: '30rem' }}
@@ -71,9 +75,11 @@ export const LampContainer = ({
           <div className="absolute  w-40 h-[100%] right-0 bg-neutral-950  bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
           <div className="absolute  w-[100%] right-0 bg-neutral-950 h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
         </motion.div>
+        {/* Commit: Add background effects for depth */}
         <div className="absolute top-1/2 h-48 w-full translate-y-12 scale-x-150 bg-neutral-950 blur-2xl"></div>
         <div className="absolute top-1/2 z-50 h-48 w-full bg-transparent opacity-10 backdrop-blur-md"></div>
         <div className="absolute inset-auto z-50 h-36 w-[28rem] -translate-y-1/2 rounded-full bg-neutral-500 opacity-50 blur-3xl"></div>
+        {/* Commit: Add animated lamp glow */}
         <motion.div
           initial={{ width: '8rem' }}
           whileInView={{ width: '16rem' }}
@@ -84,6 +90,7 @@ export const LampContainer = ({
           }}
           className="absolute inset-auto z-30 h-36 w-64 -translate-y-[6rem] rounded-full bg-neutral-400 blur-2xl"
         ></motion.div>
+        {/* Commit: Add animated lamp base */}
         <motion.div
           initial={{ width: '15rem' }}
           whileInView={{ width: '30rem' }}
@@ -95,6 +102,7 @@ export const LampContainer = ({
           className="absolute inset-auto z-50 h-0.5 w-[30rem] -translate-y-[7rem] bg-neutral-400 "
         ></motion.div>
 
+        {/* Commit: Add sparkles effect */}
         <div className="w-[40rem] h-40 relative">
           <SparklesCore
             background="transparent"
@@ -106,9 +114,11 @@ export const LampContainer = ({
           />
         </div>
 
+        {/* Commit: Add top mask for smooth transition */}
         <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-neutral-950 "></div>
       </div>
 
+      {/* Commit: Position children content */}
       <div className="relative  z-50 flex -translate-y-80 flex-col items-center px-5">
         {children}
       </div>
