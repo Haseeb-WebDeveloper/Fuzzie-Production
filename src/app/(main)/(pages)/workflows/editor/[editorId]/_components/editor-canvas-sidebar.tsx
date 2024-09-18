@@ -16,6 +16,7 @@ import {
     AccordionItem,
     AccordionTrigger,
   } from "@/components/ui/accordion"
+import RenderConnectionAccordion from './render-connection-accordion'
 
   
 type Props = {
@@ -42,7 +43,7 @@ function EditorCanvasSidebar({ nodes }: Props) {
                 </TabsList>
                 <Separator />
                 <TabsContent
-                    value="actions"
+                    value="action"
                     className="flex flex-col gap-4 p-4"
                 >
                     {Object.entries(EditorCanvasDefaultCardTypes)
@@ -87,13 +88,13 @@ function EditorCanvasSidebar({ nodes }: Props) {
                                 Account
                             </AccordionTrigger>
                             <AccordionContent>
-                                {/* {CONNECTIONS.map((connection) => (
+                                {CONNECTIONS.map((connection) => (
                                     <RenderConnectionAccordion
                                         key={connection.title}
                                         state={state}
                                         connection={connection}
                                     />
-                                ))} */}
+                                ))}
                             </AccordionContent>
                         </AccordionItem>
                         <AccordionItem

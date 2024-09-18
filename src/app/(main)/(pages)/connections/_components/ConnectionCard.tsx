@@ -40,12 +40,12 @@ function ConnectionCard({
             </div>
         </CardHeader>
         <div className='flex flex-col gap-2 items-center p-4'>
-            {/* {connected[type] ? (
+            {connected[type] ? (
                 <div className='border-bg-primary rounded-lg border-2 px-3 py-2 fond-bold text-white'>
                    Connected
                 </div>
             )
-            :( */}
+            :(
                 <Link 
                     href={
                         title === 'Discord' 
@@ -60,7 +60,7 @@ function ConnectionCard({
                 >
                     Connect
                 </Link>
-            {/* )} */}
+            )}
         </div>
       </Card>
    </>
