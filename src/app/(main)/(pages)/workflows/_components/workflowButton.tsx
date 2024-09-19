@@ -2,7 +2,7 @@
 
 // Import necessary components and hooks
 import Workflowform from '@/components/forms/Workflowform'
-import CustomModal from '@/components/global/CustomModal'
+import CustomModal from '@/components/global/custom-add-workflow-modal'
 import { Button } from '@/components/ui/button'
 import { WorkflowFormSchema } from '@/lib/types'
 import { useModal } from '@/providers/modal-provider'

@@ -55,8 +55,10 @@ const CustomModal = ({ children, subheading, title, defaultOpen }: Props) => {
             {children}
           </DrawerDescription>
         </DrawerHeader>
-        <DrawerFooter className="flex flex-col gap-4 bg-background border-t-[1px] border-t-muted">
-          <DrawerClose>
+        {/* Close Button at the bottom */}
+        <div className='w-full border-t-[1px] border-t-muted'></div>
+        <DrawerFooter className="mx-auto flex flex-col gap-4 bg-background ">
+          <DrawerClose className='min-w-32 inline-block'>
             <Button
               variant="ghost"
               className="w-full"

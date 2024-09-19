@@ -23,16 +23,18 @@ function Connections({}: Props) {
                 {/* Informational text for users */}
                 <h2>Connect all your apps directly from here. You may need to connect these apps regularly to refresh verification status.</h2>
                 {/* Map through all available connections and render ConnectionCard for each */}
+                <div className='grid grid-cols-1 sm:grid-cols-2  gap-4'>
                 {CONNECTIONS.map((connection) => (
-                    <ConnectionCard 
-                    key={connection.title} 
-                    type={connection.title}
-                    icon={connection.image}
-                    title={connection.title}
-                    description={connection.description}
-                    connected={connection}
-                    />
-                ))}
+                        <ConnectionCard 
+                            key={connection.title} 
+                            type={connection.title}
+                            icon={connection.image}
+                            title={connection.title}
+                            description={connection.description}
+                            connected={connection}
+                        />
+                    ))}
+                    </div>
             </section>
         </div>
     </div>

@@ -21,7 +21,7 @@ function Workflows({}: Props) {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4 p-5 gap-5'>
           {/* Multiple instances of the Workflow component */}
           {/* TODO: Replace with dynamic rendering based on actual workflow data */}
-          <Workflow />
+          <Workflow /> {/* for now these are hardcoded */}
           <Workflow />
           <Workflow />
           <Workflow />

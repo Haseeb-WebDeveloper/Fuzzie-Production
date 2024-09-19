@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-// Import necessary icons from lucide-react library
 import {
   Calendar,
   CircuitBoard,
@@ -15,15 +14,11 @@ import {
   Webhook,
   Zap,
 } from 'lucide-react'
-// Import EditorCanvasTypes from types file
 import { EditorCanvasTypes } from '@/lib/types'
 
-// Define props type for the component
 type Props = { type: EditorCanvasTypes }
 
-// EditorCanvasIconHelper component to render icons based on the type prop
 const EditorCanvasIconHelper = ({ type }: Props) => {
-  // Use switch statement to determine which icon to render based on the type
   switch (type) {
     case 'Email':
       return (
@@ -102,7 +97,6 @@ const EditorCanvasIconHelper = ({ type }: Props) => {
           size={30}
         />
       )
-    // Default case if no matching type is found
     default:
       return (
         <Zap
@@ -113,5 +107,4 @@ const EditorCanvasIconHelper = ({ type }: Props) => {
   }
 }
 
-// Export the component as default
 export default EditorCanvasIconHelper

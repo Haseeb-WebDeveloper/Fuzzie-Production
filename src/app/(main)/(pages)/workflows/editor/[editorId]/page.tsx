@@ -11,7 +11,7 @@ type Props = {}
 const Page = (props: Props) => {
   return (
     // Wrapper div with full height
-    <div className="h-full">
+    <div className="h-full ">
       {/* EditorProvider wraps the entire editor functionality */}
       <EditorProvider>
         {/* ConnectionsProvider manages connection-related state and logic */}

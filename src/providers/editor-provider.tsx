@@ -1,20 +1,3 @@
-/**
- * Editor Provider Component
- * 
- * This file defines the EditorProvider component and related types, context, and reducer
- * for managing the state of a workflow editor.
- * 
- * Key features:
- * - Defines types for Editor, EditorNode, and EditorState
- * - Implements a reducer for handling editor actions (REDO, UNDO, LOAD_DATA, SELECTED_ELEMENT)
- * - Creates and exports an EditorContext for use in child components
- * - Provides a custom hook (useEditor) for easy access to the editor state and dispatch function
- * 
- * Usage:
- * Wrap your main component with EditorProvider to provide editor state management
- * throughout your application.
- */
-
 'use client'
 
 import { EditorActions, EditorNodeType } from '@/lib/types'
@@ -26,7 +9,6 @@ import {
   useReducer,
 } from 'react'
 
-// Type definitions
 export type EditorNode = EditorNodeType
 
 export type Editor = {
@@ -37,7 +19,7 @@ export type Editor = {
     target: string
   }[]
   selectedNode: EditorNodeType
-};
+}
 
 export type HistoryState = {
   history: Editor[]
@@ -49,7 +31,6 @@ export type EditorState = {
   history: HistoryState
 }
 
-// Initial state definitions
 const initialEditorState: EditorState['editor'] = {
   elements: [],
   selectedNode: {
@@ -78,14 +59,12 @@ const initialState: EditorState = {
   history: initialHistoryState,
 }
 
-// Reducer function to handle editor actions
 const editorReducer = (
   state: EditorState = initialState,
   action: EditorActions
 ): EditorState => {
   switch (action.type) {
     case 'REDO':
-      // Implement redo functionality
       if (state.history.currentIndex < state.history.history.length - 1) {
         const nextIndex = state.history.currentIndex + 1
         const nextEditorState = { ...state.history.history[nextIndex] }
@@ -102,7 +81,6 @@ const editorReducer = (
       return state
 
     case 'UNDO':
-      // Implement undo functionality
       if (state.history.currentIndex > 0) {
         const prevIndex = state.history.currentIndex - 1
         const prevEditorState = { ...state.history.history[prevIndex] }
@@ -119,7 +97,6 @@ const editorReducer = (
       return state
 
     case 'LOAD_DATA':
-      // Load editor data
       return {
         ...state,
         editor: {
@@ -128,9 +105,7 @@ const editorReducer = (
           edges: action.payload.edges,
         },
       }
-
     case 'SELECTED_ELEMENT':
-      // Update selected element
       return {
         ...state,
         editor: {
@@ -138,13 +113,11 @@ const editorReducer = (
           selectedNode: action.payload.element,
         },
       }
-
     default:
       return state
   }
 }
 
-// Context definition
 export type EditorContextData = {
   previewMode: boolean
   setPreviewMode: (previewMode: boolean) => void
@@ -158,7 +131,6 @@ export const EditorContext = createContext<{
   dispatch: () => undefined,
 })
 
-// EditorProvider component
 type EditorProps = {
   children: React.ReactNode
 }
@@ -178,7 +150,6 @@ const EditorProvider = (props: EditorProps) => {
   )
 }
 
-// Custom hook for using the EditorContext
 export const useEditor = () => {
   const context = useContext(EditorContext)
   if (!context) {
