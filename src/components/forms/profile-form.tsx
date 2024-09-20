@@ -27,8 +27,6 @@ type Props = {
 const ProfileForm = ({ user, onUpdate }: Props) => {
   // State to manage loading status
   const [isLoading, setIsLoading] = useState(false)
-
-  // Initialize the form using react-hook-form with zod schema validation
   const form = useForm<z.infer<typeof EditUserProfileSchema>>({
     mode: 'onChange',
     resolver: zodResolver(EditUserProfileSchema),

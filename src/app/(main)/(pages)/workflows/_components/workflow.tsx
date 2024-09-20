@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import {
   Card,
@@ -9,10 +11,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
-// import { toast } from 'sonner'
-// import { onFlowPublish } from '../_actions/workflow-connections'
+import { onFlowPublish } from '../_actions/workflow-connections'
+import { toast } from 'sonner'
 
-// Define the props for the WorkflowCard component
 type Props = {
   name: string
   description: string
@@ -22,8 +23,14 @@ type Props = {
 
 // WorkflowCard component to display workflow information
 const WorkflowCard = ({ description, id, name, publish }: Props) => {
-  
-  // TODO: Implement WIRUP DB challenge
+
+  const onPublishFlow = async (event: any) => {
+    const response = await onFlowPublish(
+      id,
+      event.target.ariaChecked === 'false'
+    )
+    if (response) toast.message(response)
+  }
 
   return (
     <Card className="flex w-full items-center justify-between">
@@ -70,16 +77,16 @@ const WorkflowCard = ({ description, id, name, publish }: Props) => {
           htmlFor='airplane-mode'
           className='text-muted-foreground'
         >
-          ON
+          { publish ? 'On' : 'Off' }
         </Label>
         <Switch
           id='airplane-mode'
-          // TODO: Implement onPublishFlow functionality
-          // onClick={onPublishFlow}
-          // defaultChecked={props.publish}
-          // onCheckedChange={() => {
-          //   console.log('checked')
-          // }}
+          onClick={onPublishFlow}
+          // WAP
+          defaultChecked={true}
+          onCheckedChange={() => {
+            console.log('checked')
+          }}
         />
       </div>
     </Card>

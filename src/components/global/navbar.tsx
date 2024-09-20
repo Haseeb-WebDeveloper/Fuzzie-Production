@@ -61,10 +61,7 @@ const Navbar = async (props: Props) => {
                  {user ? 'Dashboard' : 'Get Started'}
               </button>
           </Link>
-
-          {/* Commit: Add UserButton for authenticated users */}
-          {user && <UserButton />}
-          {/* Commit: Add mobile menu icon */}
+          {user ? <UserButton afterSignOutUrl="/"/> : null}
           <MenuIcon className='md:hidden'/>
         </aside>
       </header>

@@ -32,11 +32,12 @@ function workflowButton({}: Props) {
         )
     }
 
+
   // Render a button that opens the new workflow modal when clicked
   return (
     <div>
         <Button
-            size={'icon'}
+            className='icon'
             onClick={handleNewWorkflow}
         >
             <PlusIcon />
