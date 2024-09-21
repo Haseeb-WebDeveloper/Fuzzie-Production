@@ -19,7 +19,7 @@ import { getFileMetaData } from '@/app/(main)/(pages)/connections/_actions/googl
 import axios from 'axios'
 import { toast } from 'sonner'
 
-export interface Option {   
+export interface Option {
   value: string
   label: string
   disable?: boolean

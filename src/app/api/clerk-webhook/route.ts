@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const { id, email_addresses, first_name, image_url } = body?.data
 
     const email = email_addresses[0]?.email_address
-    // console.log('✅', body)
+    console.log('✅', body)
 
     await db.user.upsert({
       where: { clerkId: id },
@@ -28,11 +28,6 @@ export async function POST(req: Request) {
     })
   } catch (error) {
     console.error('Error updating database:', error)
-    // Log more details about the error
-    if (error instanceof Error) {
-      console.error('Error message:', error.message)
-      console.error('Error stack:', error.stack)
-    }
     return new NextResponse('Error updating user in database', { status: 500 })
   }
 }

@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import {
   Card,
@@ -11,8 +9,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
-import { onFlowPublish } from '../_actions/workflow-connections'
 import { toast } from 'sonner'
+import { onFlowPublish } from '../_actions/workflow-connections'
 
 type Props = {
   name: string
@@ -21,9 +19,7 @@ type Props = {
   publish: boolean | null
 }
 
-// WorkflowCard component to display workflow information
-const WorkflowCard = ({ description, id, name, publish }: Props) => {
-
+const Workflow = ({ description, id, name, publish }: Props) => {
   const onPublishFlow = async (event: any) => {
     const response = await onFlowPublish(
       id,
@@ -35,11 +31,8 @@ const WorkflowCard = ({ description, id, name, publish }: Props) => {
   return (
     <Card className="flex w-full items-center justify-between">
       <CardHeader className="flex flex-col gap-4">
-        {/* Link to the workflow editor */}
         <Link href={`/workflows/editor/${id}`}>
-          {/* Display icons for connected services */}
           <div className="flex flex-row gap-2">
-            {/* Google Drive icon */}
             <Image
               src="/googleDrive.png"
               alt="Google Drive"
@@ -47,50 +40,42 @@ const WorkflowCard = ({ description, id, name, publish }: Props) => {
               width={30}
               className="object-contain"
             />
-            {/* Notion icon */}
             <Image
               src="/notion.png"
-              alt="Notion"
+              alt="Google Drive"
               height={30}
               width={30}
               className="object-contain"
             />
-            {/* Discord icon */}
             <Image
               src="/discord.png"
-              alt="Discord"
+              alt="Google Drive"
               height={30}
               width={30}
               className="object-contain"
             />
           </div>
-          {/* Display workflow name and description */}
           <div className="">
             <CardTitle className="text-lg">{name}</CardTitle>
             <CardDescription>{description}</CardDescription>
           </div>
         </Link>
       </CardHeader>
-      {/* Toggle switch for workflow activation */}
-      <div className='flex flex-col items-center p-4 gap-2'>
+      <div className="flex flex-col items-center gap-2 p-4">
         <Label
-          htmlFor='airplane-mode'
-          className='text-muted-foreground'
+          htmlFor="airplane-mode"
+          className="text-muted-foreground"
         >
-          { publish ? 'On' : 'Off' }
+          {publish! ? 'On' : 'Off'}
         </Label>
         <Switch
-          id='airplane-mode'
-          onClick={onPublishFlow}
-          // WAP
-          defaultChecked={true}
-          onCheckedChange={() => {
-            console.log('checked')
-          }}
+          id="airplane-mode"
+          // onClick={onPublishFlow}
+          defaultChecked={publish!}
         />
       </div>
     </Card>
   )
 }
 
-export default WorkflowCard
+export default Workflow

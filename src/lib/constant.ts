@@ -7,8 +7,7 @@ import Settings from '@/components/icons/settings'
 import Workflows from '@/components/icons/workflows'
 import { Connection } from './types'
 
-// Create an array of 10 client objects with sequential image URLs
-export const clients = [...new Array(10)].map((_, index) => ({
+export const clients = [...new Array(10)].map((client, index) => ({
   href: `/${index + 1}.png`,
 }))
 
@@ -93,8 +92,6 @@ export const products = [
   },
 ]
 
-// Define the menu options for the sidebar navigation
-// Each option includes a name, associated icon component, and href (route)
 export const menuOptions = [
   { name: 'Dashboard', Component: Home, href: '/dashboard' },
   { name: 'Workflows', Component: Workflows, href: '/workflows' },
@@ -150,35 +147,35 @@ export const EditorCanvasDefaultCardTypes = {
   },
 }
 
-// Define available connections for the application
 export const CONNECTIONS: Connection[] = [
   {
     title: 'Google Drive',
-    description: 'Connect your Google Drive to listen to folder changes',
+    description: 'Connect your google drive to listen to folder changes',
     image: '/googleDrive.png',
     connectionKey: 'googleNode',
-    alwaysTrue: true, // This connection is always available
+    alwaysTrue: true,
   },
   {
     title: 'Discord',
-    description: 'Connect your Discord to send notifications and messages',
+    description: 'Connect your discord to send notification and messages',
     image: '/discord.png',
     connectionKey: 'discordNode',
-    accessTokenKey: 'webhookURL', // Key to access Discord webhook URL
+    accessTokenKey: 'webhookURL',
   },
   {
     title: 'Notion',
-    description: 'Create entries in your Notion dashboard and automate tasks',
+    description: 'Create entries in your notion dashboard and automate tasks.',
     image: '/notion.png',
     connectionKey: 'notionNode',
-    accessTokenKey: 'accessToken', // Key to access Notion API token
+    accessTokenKey: 'accessToken',
   },
   {
     title: 'Slack',
-    description: 'Send notifications to team members through a custom Slack bot',
+    description:
+      'Use slack to send notifications to team members through your own custom bot.',
     image: '/slack.png',
     connectionKey: 'slackNode',
-    accessTokenKey: 'slackAccessToken', // Key to access Slack API token
-    slackSpecial: true, // Indicates special handling for Slack connection
+    accessTokenKey: 'slackAccessToken',
+    slackSpecial: true,
   },
 ]
