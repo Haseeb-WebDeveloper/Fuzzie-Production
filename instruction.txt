@@ -1,0 +1,84 @@
+
+
+# This was inserted by `prisma init`:
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
+
+# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_YW11c2luZy1sYWJyYWRvci0yLmNsZXJrLmFjY291bnRzLmRldiQ
+CLERK_SECRET_KEY=sk_test_5KPenWSZ0i4hqRsZ0nULSjOFh5Z5FnX1H09QH6Db2R
+
+DATABASE_URL="postgresql://neondb_owner:HkF4iCIJ2uoa@ep-broad-dust-a5nsskrk.us-east-2.aws.neon.tech/neondb?sslmode=require"
+
+NEXT_PUBLIC_URL=https://localhost:3000
+NEXT_PUBLIC_DOMAIN=localhost:3000
+NEXT_PUBLIC_SCHEME=https://
+
+NEXT_PUBLIC_GOOGLE_SCOPES=https://www.googleapis.com/auth/drive
+NEXT_PUBLIC_OAUTH2_ENDPOINT=https://accounts.google.com/o/oauth2/v2/auth
+
+NEXT_PUBLIC_UPLOAD_CARE_CSS_SRC=https://cdn.jsdelivr.net/npm/@uploadcare/blocks@
+NEXT_PUBLIC_UPLOAD_CARE_SRC_PACKAGE=/web/lr-file-uploader-regular.min.css
+
+
+
+# Setting up API of Google, Notion, Slack and Discord
+# Google: https://console.cloud.google.com/apis/credentials/oauthclient/669366514652-8cpdju9fc641gq0ce2r96a9ehnr8sepi.apps.googleusercontent.com?project=fuzzie-1100
+# Notion: https://www.notion.so/profile/integrations/public/108d872b-594c-80e5-b6aa-0037b5072f09
+# Notion: https://www.notion.so/Fuzzie-Production-10985abbbf0680338a7be7b832869664?showMoveTo=true&saveParent=true
+# Slack: https://api.slack.com/apps/A07NTNMDFK3/oauth?
+# Slack: https://app.slack.com/client/T07N0FQ6D6K/C07NHH2CNP6
+# Discord: https://discord.com/developers/applications/1286970747817955378/oauth2
+# Discord: https://discord.com/channels/1274209542464471101/1287235596233736265
+# Make sure to add  "dev": "next dev --experimental-https", in package.json otherwise server will run on http and that can cause problems related to app connection
+
+
+
+# Discord: First create a account on Discord. Then go to https://discord.com/developers/applications. Create new application. Get the links and paste here
+DISCORD_CLIENT_ID=1286970747817955378   
+DISCORD_CLIENT_SECRET=wVaQTQ28HfggdVpGToaRlfIP5txKEcPf
+DISCORD_TOKEN=
+DISCORD_PUBLICK_KEY=1286970747817955378
+NEXT_PUBLIC_DISCORD_REDIRECT=https://discord.com/oauth2/authorize?client_id=1286970747817955378&response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fcallback%2Fdiscord&integration_type=0&scope=identify+email+connections+guilds.members.read+guilds+webhook.incoming
+
+
+
+# Notion: First you must have an account on notion Then Go to developers.notion.com, Click on get started. On left side menu click on Build your first integration. Then on right side menu click on Create your integration in Notion. Click on given click on website that probebly will be https://www.notion.so/profile/integrations. Here create a new. Make it publick give all links and create. Then Paste the integration links here
+NOTION_API_SECRET=secret_AYtYXcFqiXR7sR3DYiSVT0eQhIGBTaOxhHYcjNhjUJe
+NOTION_CLIENT_ID=108d872b-594c-80e5-b6aa-0037b5072f09
+NOTION_REDIRECT_URI=https://localhost:3000/api/auth/callback/notion
+NEXT_PUBLIC_NOTION_AUTH_URL=https://api.notion.com/v1/oauth/authorize?client_id=108d872b-594c-80e5-b6aa-0037b5072f09&response_type=code&owner=user&redirect_uri=https%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fcallback%2Fnotion
+
+# ,groups:read,mpim:read,im:read'
+
+# Slack: First create a account on Slack. Again go to slack.com and create a new workspace if you don't have one or you just want to build new. 
+# My Workplace link: https://app.slack.com/client/T07N0FQ6D6K/C07NHH2CNP6
+# Link to join new members to My Workplace Link: https://join.slack.com/t/newworkspace-q5i9284/shared_invite/zt-2qvml8cxz-j8C8Ba0aOqkP07BgUv7oAA
+# Then go to https://api.slack.com/ Click on Your apps on navbar and creat a new app. Copy all the integration links and paste it here.
+# Also ckick on OAuth & Permissions on the left menu and add the SLACK_REDIRECT_URL to the  Redirect URL
+SLACK_SIGNING_SECRET=3e985249a743f6a2347e4fa34da0dcf2
+SLACK_BOT_TOKEN=xapp-1-A07NTNMDFK3-7748581274487-b00a88e483b35dbc77e99affc0b8dd6e5dc267f4bb62bd3ad66d53c4f68879d4
+SLACK_APP_TOKEN=xapp-1-A07NTNMDFK3-7765623063764-90d71228473ba8fafdb483c297f46b8eec96f2924bc24131af46e8444eb40e8e
+SLACK_CLIENT_ID=7748534217223.7775769457649
+SLACK_CLIENT_SECRET=d423e90b2f584abecf3d151efac75c05
+SLACK_REDIRECT_URI=https://localhost:3000/api/auth/callback/slack
+NEXT_PUBLIC_SLACK_REDIRECT=https://slack.com/oauth/v2/authorize?client_id=7748534217223.7775769457649&scope=chat:write,channels:read,groups:read,mpim:read,im:read&user_scope=chat:write,channels:read,groups:read,mpim:read,im:read&redirect_uri=https%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fcallback%2Fslack
+
+# HTTPS=true
+
+# Google: Go to https://console.cloud.google.com/apis/credentials/oauthclient/669366514652-8cpdju9fc641gq0ce2r96a9ehnr8sepi.apps.googleusercontent.com?project=fuzzie-1100
+# Get Client Id and Client Secrits on paste here
+GOOGLE_CLIENT_ID=669366514652-8cpdju9fc641gq0ce2r96a9ehnr8sepi.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+OAUTH2_REDIRECT_URI=https://electric-grizzly-7.clerk.accounts.dev/v1/oauth_callback
+NGROK_URI=
+CRON_JOB_KEY=
+STRIPE_SECRET=
