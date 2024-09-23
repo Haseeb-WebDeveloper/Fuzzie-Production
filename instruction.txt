@@ -1,11 +1,21 @@
+Install form from shadcn ui
+Import profile-form from componets.
+Set up form using react form hook and zod (input fields etc).
+Then we set up prisma (use to intract with any database).
+        bun i -D prisma (it willcreate a schema.prisma  file)
+Then Set up Neon Tach (Actual Database to store data)
+        Create new project, give project name and create. 
+	Copy the connection string. Past that in .env file outside the src directory.  DATABASE_URL = "copied link" 
+Create write a schema in schema.prisma file.
+Then in src/lib folder create db.ts file.  
+After that run this command. bunx prisma generate. Behind the scene it will generate the actual code according to our schema.
+Then run this command. bunx prisma db push. It will push the create modal (table) in the Database (Neon Tech).
+Always run these 2 command every time you change the schema.prisma file. If any error accrued just open new terminal and retry.
+Then we setup our setting page where I show some text and import 2 components one for form to update the user data and other to upload and delete the profile picture. In profile-form.tsx component I have use react form hook and Zod Resolver. In profilePicture.tsx I have use Uplode Care to upload picture. where If user has a profile picture I have show it with a remove option and if user dont have a profile picture then i show the upload button.
+Now it time to 
 
 
-# This was inserted by `prisma init`:
-# Environment variables declared in this file are automatically made available to Prisma.
-# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
 
-# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
-# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
 
 
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in

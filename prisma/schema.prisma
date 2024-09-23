@@ -11,9 +11,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  // Add these lines to configure connection pool settings
-  connection_limit = 20 // Increase the connection limit
-  connection_timeout = 30 // Increase the timeout in seconds
+  
 }
 
 model User {
@@ -23,8 +21,8 @@ model User {
   name         String?
   email        String  @unique
   profileImage String?
-  // tier         String? @default("Free")
-  // credits      String? @default("10")
+  tier         String? @default("Free")
+  credits      String? @default("10")
 
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
