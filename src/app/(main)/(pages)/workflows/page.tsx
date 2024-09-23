@@ -11,7 +11,7 @@ const Page = (props: Props) => {
           <h1 className='text-2xl'>Workflows</h1>
           <WorkflowButton />
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  p-5 gap-5'>
+        <div className='  '>
           <Workflows />
         </div>
     </div>

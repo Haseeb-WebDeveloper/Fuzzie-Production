@@ -23,8 +23,8 @@ import {
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { Loader2 } from 'lucide-react'
-// import { toast } from 'sonner'
-// import { onCreateWorkflow } from '@/app/(main)/(pages)/workflows/_actions/workflow-connections'
+import { toast } from 'sonner'
+import { onCreateWorkflow } from '@/app/(main)/(pages)/workflows/_actions/workflow-connections'
 import { useModal } from '@/providers/modal-provider'
 
 // Define props for the Workflowform component
@@ -55,13 +55,12 @@ const Workflowform = ({ subTitle, title }: Props) => {
 
   // Handle form submission
   const handleSubmit = async (values: z.infer<typeof WorkflowFormSchema>) => {
-    // Commented out code for creating a workflow and showing a toast message
-    // const workflow = await onCreateWorkflow(values.name, values.description)
-    // if (workflow) {
-    //   toast.message(workflow.message)
-    //   router.refresh()
-    // }
-    // setClose()
+     const workflow = await onCreateWorkflow(values.name, values.description)
+     if (workflow) {
+       toast.message(workflow.message)
+       router.refresh()
+     }
+     setClose()
   }
 
   return (

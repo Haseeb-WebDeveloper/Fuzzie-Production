@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
         ? databasesPages.results[0].id
         : '';
 
-        console.log(databaseId)
+        // console.log(databaseId)
 
       return NextResponse.redirect(
         `https://localhost:3000/connections?access_token=${response.data.access_token}&workspace_name=${response.data.workspace_name}&workspace_icon=${response.data.workspace_icon}&workspace_id=${response.data.workspace_id}&database_id=${databaseId}`

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --experimental-https", 
+    "dev": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -33,7 +33,7 @@
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "cmdk": "1.0.0",
+    "cmdk": "0.2.00",
     "framer-motion": "^11.5.4",
     "googleapis": "^134.0.0",
     "lucide-react": "^0.441.0",
