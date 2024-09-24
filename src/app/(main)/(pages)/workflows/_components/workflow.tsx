@@ -30,9 +30,9 @@ const Workflow = ({ description, id, name, publish }: Props) => {
 
   return (
     <Card className="flex w-full items-center justify-between">
-      <CardHeader className="flex flex-col gap-4">
-        <Link href={`/workflows/editor/${id}`}>
-          <div className="flex flex-row gap-2">
+      <CardHeader className=" ">
+        <Link className='flex flex-col gap-4 w-full' href={`/workflows/editor/${id}`}>
+          <div className="flex flex-row gap-2 w-full">
             <Image
               src="/googleDrive.png"
               alt="Google Drive"

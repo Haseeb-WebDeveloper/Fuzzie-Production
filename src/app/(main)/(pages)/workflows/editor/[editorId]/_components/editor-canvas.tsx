@@ -180,7 +180,7 @@ const EditorCanvas = (props: Props) => {
 
   return (
     <ResizablePanelGroup direction="horizontal">
-      <ResizablePanel defaultSize={70}>
+      <ResizablePanel defaultSize={75}>
         <div className="flex h-full items-center justify-center">
           <div
             style={{ width: '100%', height: '100%', paddingBottom: '70px' }}
@@ -240,7 +240,7 @@ const EditorCanvas = (props: Props) => {
       </ResizablePanel>
       <ResizableHandle />
       <ResizablePanel
-        defaultSize={40}
+        defaultSize={35}
         className="relative sm:block"
       >
         {isWorkFlowLoading ? (

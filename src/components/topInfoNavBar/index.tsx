@@ -1,9 +1,10 @@
 'use client'
-
-// Import necessary components and icons
-import React from 'react'
+import React, { useEffect } from 'react'
+import { ModeToggle } from '../global/mode-toggle'
 import { Book, Headphones, Search } from 'lucide-react'
+import Templates from '../icons/cloud_download'
 import { Input } from '@/components/ui/input'
+
 import {
   Tooltip,
   TooltipContent,
@@ -11,24 +12,40 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { UserButton } from '@clerk/nextjs'
+import { useBilling } from '@/providers/billing-provider'
+import { onPaymentDetails } from '@/app/(main)/(pages)/billing/_actions/payment-connecetions'
 
-// Uncomment if billing functionality is needed
-// import { useBilling } from '@/providers/billing-provider'
+type Props = {}
 
-// Define props type for InfoBar component
-type Props = {
-  // Uncomment if authentication status is needed
-  // isAuthenticated: boolean
-}
+const InfoBar = (props: Props) => {
+  const { credits, tier, setCredits, setTier } = useBilling()
 
-// InfoBar component definition
-const InfoBar = ({}: Props) => {
-  // Uncomment if billing information is needed
-  // const { credits, tier } = useBilling()
+  const onGetPayment = async () => {
+    const response = await onPaymentDetails()
+    if (response) {
+      setTier(response.tier!)
+      setCredits(response.credits!)
+    }
+  }
+
+  useEffect(() => {
+    onGetPayment()
+  }, [])
 
   return (
-    // Main container for the info bar
     <div className="flex flex-row justify-end gap-6 items-center px-4 py-4 w-full dark:bg-black ">
+
+      <span className="flex items-center gap-2 font-bold">
+        <p className="text-sm font-light text-gray-300">Credits</p>
+        {tier == 'Unlimited' ? (
+          <span>Unlimited</span>
+        ) : (
+          <span>
+            {credits}/{tier == 'Free' ? '10' : tier == 'Pro' && '100'}
+          </span>
+        )}
+      </span>
+
       {/* Search input field */}
       <span className="flex items-center bg-muted rounded-full px-4">
         <Search />

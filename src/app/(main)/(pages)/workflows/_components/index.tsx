@@ -10,12 +10,12 @@ const index = async (props: Props) => {
 
   return (
     // this is the section that contain the div that contains the workflows
-        <section className=' w-full '>
+        <section className=' w-full mt-2'>
            {/*  this is the div that contains the workflows */}
-          <div className=' '> 
+          <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xxl:grid-cols-5  p-5 gap-5 '> 
           {workflows?.length
            ? workflows.map((flow)=>(
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4  p-5 gap-5'> 
+            <div className='shadow-md '> 
             <WorkflowCard
               key={flow.id}
               {...flow}
