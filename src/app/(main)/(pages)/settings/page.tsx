@@ -54,10 +54,11 @@ const Settings = async (props: Props) => {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-2xl sticky top-0 p-4 bg-background/50 backdrop-blur-lg flex items-center  rounded-l-3xl border-b z-10">
+    <div className="flex flex-col gap-4 rounded-tl-3xl ">
+      <h1 className="text-2xl sticky top-0 rounded-tl-3xl p-4 bg-background/50 backdrop-blur-lg flex items-center     border-b z-10">
         <span>Settings</span>
       </h1>
+      <section className='max-w-[1400px] mx-auto w-full '>
       <div className="flex flex-col gap-10 p-6">
         <div>
           <h2 className="text-2xl font-bold">User Profile</h2>
@@ -75,6 +76,8 @@ const Settings = async (props: Props) => {
           onUpdate={updateUserInfo}
         />
       </div>
+      {/* Rest of the page */}
+      </section>
     </div>
   )
 }

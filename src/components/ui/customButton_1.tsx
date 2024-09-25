@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { FiSun } from "react-icons/fi";
 
@@ -7,11 +8,12 @@ type Props = {
 }
 
 const CustomButton_1 = (props: Props) => {
-
+    const router = useRouter();
     const [isHovered, setIsHovered] = useState(false);
 
     return (
         <button
+        onClick={() => router.push("/dashboard")}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className={`mx-auto justify-end relative inline-flex items-center gap-2 w-[140px] h-10 scale-105 rounded-md bg-[#1C1C1C] border-[0.1px] shadow`}>

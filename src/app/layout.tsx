@@ -5,7 +5,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ModalProvider from "@/providers/modal-provider";
 import { Toaster } from "sonner";
-
+import NextTopLoader from 'nextjs-toploader';
 
 
 const font = DM_Sans({
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-   
+    
     <ClerkProvider
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
     >
@@ -43,7 +43,22 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <ModalProvider>
-              {children}
+              <NextTopLoader
+               color="#9F54FF"
+               initialPosition={0.08}
+               crawlSpeed={200}
+               height={2}
+               crawl={true}
+               showSpinner={false}
+               easing="ease"
+               speed={200}
+               shadow="0 0 10px #9F54FF,0 0 5px #9F54FF"
+               template='<div class="bar" role="bar"><div class="peg"></div></div> 
+               <div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+               zIndex={1600}
+               showAtBottom={false}
+              ></NextTopLoader>
+                {children}
               <Toaster />
             </ModalProvider>
           </ThemeProvider>

@@ -70,7 +70,7 @@ const ContentBasedOnTitle = ({
 
   // @ts-ignore
   const nodeConnectionType: any = nodeConnection[nodeMapper[title]]
-  if (!nodeConnectionType) return <p>Not connected</p>
+  if (!nodeConnectionType) return <p className='px-3'>Please select a node</p>
 
   const isConnected =
     title === 'Google Drive'
@@ -87,7 +87,7 @@ const ContentBasedOnTitle = ({
           }`
         ]
 
-  if (!isConnected) return <p>Not connected</p>
+  if (!isConnected) return <p className='px-3'>Not connected</p>
 
   return (
     <AccordionContent>

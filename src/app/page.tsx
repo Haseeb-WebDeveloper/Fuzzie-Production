@@ -37,24 +37,24 @@ export default function Home() {
         </div>
       </section>
 
-      <section className=" mx-auto w-full">
+      {/* <section className=" mx-auto w-full">
         <InfiniteMovingCards 
           className="bg-[#131313] mx-auto w-full"
           items={clients}
           direction="right"
           speed="slow"
         />
-      </section>
+      </section> */}
 
-      <section id="showcaseProductPic" className="w-full bg-neutral-950 rounded-md relative flex flex-col items-center justify-center px-4 md:px-8 lg:px-16 py-28">
+      {/* <section id="showcaseProductPic" className="w-full bg-neutral-950 rounded-md relative flex flex-col items-center justify-center px-4 md:px-8 lg:px-16 py-28">
         <ProductImgScroll/>  
-      </section>
+      </section> */}
 
-      <section className="">
+      {/* <section className="">
         <LampContainer >
           <PricingContent/>
         </LampContainer>
-      </section>
+      </section> */}
 
       </main>
     </>

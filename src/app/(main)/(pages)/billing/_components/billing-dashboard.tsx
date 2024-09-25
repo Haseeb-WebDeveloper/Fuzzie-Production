@@ -44,7 +44,7 @@ const BillingDashboard = (props: Props) => {
   return (
     <>
       {loading ? (
-        <div className="absolute flex h-full w-full items-center justify-center">
+        <div className="absolute flex h-full w-full  items-center justify-center">
           <svg
             aria-hidden="true"
             className="inline h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
@@ -64,7 +64,7 @@ const BillingDashboard = (props: Props) => {
         </div>
       ) : (
         <>
-          <div className="flex gap-5 p-6">
+          <div className="flex gap-4 p-6  items-center justify-center">
             <SubscriptionCard
               onPayment={onPayment}
               tier={tier}

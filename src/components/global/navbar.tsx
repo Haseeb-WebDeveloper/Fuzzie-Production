@@ -30,7 +30,7 @@ const Navbar = async (props: Props) => {
         </aside>
 
         {/* Commit: Add responsive navigation menu for desktop */}
-        <nav className='absolute left-1/2 translate-x-[-50%] top-1/2 -translate-y-1/2 transform hidden md:block'>
+        {/* <nav className='absolute left-1/2 translate-x-[-50%] top-1/2 -translate-y-1/2 transform hidden md:block'>
           <ul className='flex items-center gap-4 list-none font-twk font-normal text-sm text-neutral-200 hover:text-white'>
             <li className='text-neutral-200 hover:text-white'>
               <Link href="/products">Products</Link>
@@ -51,14 +51,14 @@ const Navbar = async (props: Props) => {
               <Link href="/experties">Experties</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         {/* Commit: Add user authentication and mobile menu button */}
         <aside className='flex items-center gap-4'>
           {/* Commit: Implement conditional rendering for dashboard/get started button */}
           <Link href={"/dashboard"} className=''>
-              <button className="px-4 py-2 rounded-md bg-[#1C1C1C] border-[0.1px] shadow">
-                 {user ? 'Dashboard' : 'Get Started'}
+              <button className="px-6 py-2 rounded-md bg-[#1C1C1C] border-[0.1px] shadow">
+                 {user ? 'Dashboard' : 'Sign In'}
               </button>
           </Link>
           {user ? <UserButton afterSignOutUrl="/"/> : null}

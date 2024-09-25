@@ -94,21 +94,21 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
         </TabsContent>
         <TabsContent
           value="settings"
-          className="-mt-6"
+          className="-mt-8 "
         >
-          <div className="px-2 py-4 text-center text-xl font-bold">
+          <div className="px-2 pt-4 pb-6 text-center text-xl font-bold">
             {state.editor.selectedNode.data.title}
           </div>
 
           <Accordion type="multiple">
             <AccordionItem
               value="Options"
-              className="border-y-[1px] px-2"
+              className="  "
             >
-              <AccordionTrigger className="!no-underline">
+              <AccordionTrigger className="border-t-[1px]  px-3 !no-underline">
                 Account
               </AccordionTrigger>
-              <AccordionContent>
+              <AccordionContent className='px-3'>
                 {CONNECTIONS.map((connection) => (
                   <RenderConnectionAccordion
                     key={connection.title}
@@ -120,9 +120,9 @@ const EditorCanvasSidebar = ({ nodes }: Props) => {
             </AccordionItem>
             <AccordionItem
               value="Expected Output"
-              className="px-2"
+              className=""
             >
-              <AccordionTrigger className="!no-underline">
+              <AccordionTrigger className="!no-underline px-3">
                 Action
               </AccordionTrigger>
               <RenderOutputAccordion

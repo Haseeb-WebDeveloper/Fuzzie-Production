@@ -39,11 +39,16 @@ const Billing = async (props: Props) => {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-2xl sticky top-0 p-4 bg-background/50 backdrop-blur-lg flex items-center  rounded-l-3xl border-b z-10">
+    <div className="flex flex-col  rounded-tl-3xl">
+      <h1 className="text-2xl sticky top-0 rounded-tl-3xl p-4 bg-background/50 backdrop-blur-lg flex items-center   border-b z-10">
         <span>Billing</span>
       </h1>
-      <BillingDashboard />
+      <section className='max-w-[1400px] mx-auto w-full mt-1.5  '>
+      <div>
+        <BillingDashboard />
+      </div>
+      {/* Rest of the page */}
+      </section>
     </div>
   )
 }
