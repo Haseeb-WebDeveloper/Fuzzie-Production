@@ -41,8 +41,8 @@ const EditorCanvas = (props: Props) => {
   const [nodes, setNodes] = useState(initialNodes)
   const [edges, setEdges] = useState(initialEdges)
   const [isWorkFlowLoading, setIsWorkFlowLoading] = useState<boolean>(false)
-  const [reactFlowInstance, setReactFlowInstance] =
-    useState<ReactFlowInstance>()
+  const [reactFlowInstance, setReactFlowInstance]
+    = useState<ReactFlowInstance>()
   const pathname = usePathname()
 
   const onDragOver = useCallback((event: any) => {
